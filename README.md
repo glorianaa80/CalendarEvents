@@ -1,2 +1,2 @@
-# CalendarEvents
-Segunda tarea de Node.js en donde usamos MongoDB como base de datos
+# node-19-homework1
+Homework 1 solution
