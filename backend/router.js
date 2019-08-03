@@ -1,35 +1,35 @@
 const {Router} = require('./core/router');
 
-const CarsController = require('./controllers/cars.controller');
+const EventsController = require('./controllers/events.controller');
 const BrandsController = require('./controllers/brands.controller');
-const cars = new CarsController();
+const events = new EventsController();
 const brands = new BrandsController();
 
 const router = new Router([
     {
-        path: '/api/v1/cars',
+        path: '/api/v1/events',
         method: 'GET',
-        callback: cars.getAll.bind(cars)
+        callback: events.getAll.bind(events)
     },
     {
-        path: '/api/v1/cars/:id',
+        path: '/api/v1/events/:id',
         method: 'GET',
-        callback: cars.getOne.bind(cars)
+        callback: events.getOne.bind(events)
     },
     {
-        path: '/api/v1/cars',
+        path: '/api/v1/events',
         method: 'POST',
-        callback: cars.postOne.bind(cars)
+        callback: events.postOne.bind(events)
     },
     {
-        path: '/api/v1/cars/:id',
+        path: '/api/v1/events/:id',
         method: 'PUT',
-        callback: cars.putOne.bind(cars)
+        callback: events.putOne.bind(events)
     },
     {
-        path: '/api/v1/cars/:id',
+        path: '/api/v1/events/:id',
         method: 'DELETE',
-        callback: cars.deleteOne.bind(cars)
+        callback: events.deleteOne.bind(events)
     },
     {
         path: '/api/v1/brands',

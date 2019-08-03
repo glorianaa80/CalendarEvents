@@ -4,40 +4,38 @@ const Response = require('../core/response');
 const Utils = require('../core/utils');
 const Controller = require('../core/controller');
 
-class CarsController extends Controller {
+class EventsController extends Controller {
     constructor() {
-        super('cars');
+        super('Events');
     }
 
     getAll (req, res, route) {
         this.find({}, route.query)
-            .then(Events => Response.Send(res, cars))
+            .then(events => Response.Send(res, events))
             .catch(error => Response.ApplicationError(res, error));
     }
 
     getOne (req, res, route) {
         let id = route.params.id;
         this.findOne(id)
-            .then(car => Response.Send(res, car))
+            .then(event => Response.Send(res, event))
             .catch(error => Response.ApplicationError(res, error));
     }
 
     postOne (req, res, route) {
-        let car = Utils.sanitize(route.data, ['name', 'color', 'year', 'description']) || {};
+        let event = Utils.sanitize(route.data, ['name', 'date', 'hour', 'notes', 'favorite']) || {};
 
-        let error = this._validCar(car);
+        let error = this._validEvent(event);
         if(error) return Response.BadRequest(res, error);
 
-        this.insertOne(car)
-            .then(newCart => Response.Send(res, newCart))
+        this.insertOne(event)
+            .then(newEvent => Response.Send(res, newEvent))
             .catch(error => Response.ApplicationError(res, error));
     }
 
-    _validCar (car = {}) {
-        if(Utils.isEmpty(car) || !car.name || !car.color || !car.year)
-            return new Error(`Car name, color and year are required.`);
-        if(isNaN(+car.year))
-            return new Error(`Car year must be a number.`);
+    _validEvent (event = {}) {
+        if(Utils.isEmpty(event) || !event.name || !event.date || !event.hour)
+            return new Error(`event name, date and hour are required.`);
         return null;
     }
 
@@ -47,12 +45,12 @@ class CarsController extends Controller {
         if(!Utils.isId(id))
             Response.BadRequest(res, new Error(`Invalid id`));
 
-        let car = Utils.sanitize(route.data, ['name', 'color', 'year', 'description']) || {};
-        if(Utils.isEmpty(car))
-            return Response.BadRequest(new Error(`Invalid car`));
+        let event = Utils.sanitize(route.data, ['name', 'color', 'year', 'description']) || {};
+        if(Utils.isEmpty(event))
+            return Response.BadRequest(new Error(`Invalid event`));
 
-        this.updateOne(id, car)
-            .then(updatedCar => Response.Send(res, updatedCar))
+        this.updateOne(id, event)
+            .then(updatedEvent => Response.Send(res, updatedEvent))
             .catch(error => Response.ApplicationError(res, error));
     }
 
@@ -68,4 +66,4 @@ class CarsController extends Controller {
     }
 }
 
-module.exports = CarsController;
+module.exports = EventsController;

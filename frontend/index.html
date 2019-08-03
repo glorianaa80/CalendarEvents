@@ -48,7 +48,7 @@
   <!--EVENTOS  -->
 
   <div class="events">
-    <form action="#">
+    <form action="http://localhost:2000/api/v1/events" method="get">
       <label for="date">Date</label>
       <input type="text" id="date">
       <label for="hour">Hour</label>
@@ -63,9 +63,11 @@
       </label>
       <label for="notes">Notes</label>
       <input type="text" id="notes">
+      <button  class="button button--webcoderskull button--border-thick button--text-medium">CANCER</button>
+      <button type="submit" class="button button--webcoderskull button--border-thick button--text-medium">SAVE</button>
     </form>
-    <button class="button button--webcoderskull button--border-thick button--text-medium">CANCER</button>
-    <button class="button button--webcoderskull button--border-thick button--text-medium">SAVE</button>
+
+  
   </div>
 
   <script src="calendar.js" type="text/javascript"></script>
@@ -84,6 +86,5 @@
   <script src="app/navbar/navbar.component.js"></script>
   <script src="app/router/router.component.js"></script>
   <script src="app/cars/cars.component.js"></script>
-</body>
 
 </html>
